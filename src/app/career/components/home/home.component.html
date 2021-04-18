@@ -1,0 +1,80 @@
+<h6 class="header">CONTACTS</h6>
+        <div class="contacts" id=""> 
+            <div class="contactNames">
+                <div *ngFor="let userContact of userContacts">
+                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/home/users/',userContact.id]" routerLinkActive="active"  (dblclick)="presentData()">
+                        <li id="contactName1">{{userContact.name}}</li>
+                        <li id="contactNumber1">{{userContact.number}}</li>
+                        <li id="contactEmail1">{{userContact.mail}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mainContact" style="width:280px">
+                <div *ngIf="userContact1" >
+                    <div class="contactDetail" id="username">{{userContact1.name}}<h6></h6></div>
+                    <div class="memberDetails">
+                        <li class="list" id="usermail">Email: {{userContact1.mail}}</li>
+                        <li class="list" id="usermobile">Mobile: {{userContact1.number}}</li>
+                        <li class="list" id="userlandline">Landline: {{userContact1.landline}}</li>
+                        <li class="list" id="userwebsite">Website: {{userContact1.website}}</li>
+                        <li class="list0" id="useraddress">Address: {{userContact1.address}}</li>
+                        <li class="list1" id="state" style="padding-left:52px;">Telangana</li>
+                        <li class="list1" id="pin" style="padding-left:52px;">500061</li>
+                    </div>
+                </div>
+            </div>
+            <div class="imageIcon">
+                <div>
+                    <img src="../../../../assets/Pictures/Edit-icon.png" height="18px" alt="EDIT Image"class="icon" id="imagePlace" (click)="editDetails()"><span class="modify" (click)="editDetails()">EDIT</span>
+                </div>
+                <div>
+                    <img src="../../../../assets/Pictures/delete2.png" height="26px" alt="DELETE Image"class="icon" (click)="deleteDetails()"><span class="modify" (click)="deleteDetails()">DELETE</span>
+                </div>
+            </div>
+            <div class="contactDetails">
+                <form [formGroup]="editForm" class="detailForm" (ngSubmit)="editData()">
+                    <div class="subDetails">
+                        <div class="form-group">
+                            <label for="">Name<span class="mandatory"> *</span></label>
+                            <input type="text" id="contactName" name="" value="" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                            <div *ngIf="submitted && f.name.errors">
+                                <div *ngIf="f.name.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email<span class="mandatory"> *</span></label>
+                            <input type="text" id="contactMail" name="" value="" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors}">
+                            <div *ngIf="submitted && f.mail.errors">
+                                <div *ngIf="f.mail.errors.required">Email is required</div>
+                                <div *ngIf="f.mail.errors.email">Email should be valid</div>
+                            </div>
+                        </div>
+                        <div class="block">
+                            <div class="form-group">
+                                <label for="">Mobile<span class="mandatory"> *</span></label>
+                                <input type="text" id="contactNumber" name="" value="" formControlName="number" class="form-control" minlength="10" [ngClass]="{ 'is-invalid': submitted && f.number.errors }">
+                                <div *ngIf="submitted && f.number.errors">
+                                    <div *ngIf="f.number.errors.required">Number is required</div>
+                                    <div *ngIf="f.number.errors.minlength">Number should of length 10</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  style="margin-left: 5px;" for="">Landline</label>
+                                <input style="margin-left: 5px;" type="number" id="contactLandline" name="" value="" formControlName="landline" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Website</label>
+                            <input type="text" id="contactWebsite" name="" value="" formControlName="website" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <textarea class="form-control" id="contactAddress" formControlName="address"cols="35"rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="submitButton" id="">
+                            <button class="btn btn-success" type="submit" value="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>

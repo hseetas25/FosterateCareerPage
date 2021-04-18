@@ -1,0 +1,50 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { UserServiceService } from '../../service/user-service.service';
+@Component({
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss']
+})
+export class AddComponent implements OnInit {
+
+  constructor(private fb:FormBuilder,private router:Router,private us:UserServiceService) { }
+  registerForm:FormGroup;
+  static id:number=4;
+  submitted:boolean=false;
+  ngOnInit() {
+    this.registerForm=this.fb.group(
+      {
+        name:new FormControl('',Validators.required),
+        mail:new FormControl('',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+        number:new FormControl('',[Validators.required,Validators.minLength(10)]),
+        landline:new FormControl(),
+        website:new FormControl(),
+        address:new FormControl(),
+      });
+        if(!this.us.userContacts.length)
+        {
+          var header=document.querySelector(".header");
+          header.remove();
+          var cont=<HTMLElement>document.querySelector(".flexContent");
+          cont.style.marginLeft="250px";
+        }
+  }
+  get f() { return this.registerForm.controls; }
+  userContacts=this.us.userContacts;
+  getData():void
+  {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+  }
+      this.registerForm.value.id=AddComponent.id;
+      this.us.getData(this.registerForm.value);
+      this.registerForm.reset();
+      this.submitted = true;
+      this.router.navigate(['/home/users/',AddComponent.id]);
+      AddComponent.id+=1;
+  }
+
+}

@@ -1,0 +1,124 @@
+.header
+{
+    margin-top:20px;
+    margin-left: 20px;
+    margin-bottom:15px;   
+}
+.contacts
+{
+    font-size:13px;
+    display: flex;
+    padding-left: 20px;
+}
+.contact
+{
+    border:1px solid #E4E4E4;
+    padding:10px;
+    width:220px;
+    list-style-type: none;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+.contact:hover
+{
+    cursor: pointer;
+    background-color: #CFE7F3;
+    border:1px solid #E4E4E4;
+}
+.active
+{
+    background-color: #CFE7F3;
+}
+.contactDetail
+{
+    margin-left: 50px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.flexContent
+{
+    display: flex;
+}
+.memberDetails
+{
+    font-size: 13px;
+    margin-left: 50px;
+    list-style-type:none;
+    margin-bottom: 4px;
+}
+.list
+{
+    margin-bottom: 4px;
+}
+.list0
+{
+    margin-bottom: 3px;
+}
+.list1
+{
+    padding-left: 69px;
+    margin-bottom: 3px;
+}
+.icon
+{
+    margin-left:2px;
+}
+.icon:hover
+{
+    cursor: pointer;
+}
+.modify
+{
+    margin-left: 2px;
+    cursor: pointer;
+}
+#imagePlace
+{
+    margin-left: 120px;
+}
+.imageIcon div
+{
+    display: inline-block;
+}
+.mandatory
+{
+    color:red;
+}
+.form-group
+{
+    margin-top:4px;
+    margin-bottom: 4px;
+}
+.btn
+{
+    width:100px;
+    text-align: center;
+    border-radius: 6px;
+    margin-right: 10px;
+    float: right;
+}
+.block
+{
+    display:flex;
+}
+.contactDetails {
+    width: 520px;
+    height: 470px;
+    flex-grow: 10px;
+    box-shadow:0px 5px 15px black;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin-left: 20px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.subDetails
+{
+    width:400px;
+}
+.subDetails label
+{
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
