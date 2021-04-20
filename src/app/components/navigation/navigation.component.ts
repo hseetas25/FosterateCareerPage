@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router,ActivatedRoute} from '@angular/router'
-import {users} from '../../career/service/users';
-import {UserServiceService} from '../../career/service/user-service.service';
+import { Router } from '@angular/router'
+import { users } from '../../career/service/users';
+import { UserServiceService } from '../../career/service/user-service.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -9,27 +9,28 @@ import {UserServiceService} from '../../career/service/user-service.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router:Router,private route:ActivatedRoute,private us:UserServiceService) { }
+  constructor(private router:Router,private userService:UserServiceService) { }
   userId:number;
+  contactLen:number;
   ngOnInit(): void {
     this.gotoContact();
   }
 
-  gotoContact()
+  gotoContact():void
   {
-    if(users.length && this.router.url=='/')
+    this.contactLen=users.length;
+    if(this.contactLen && this.router.url=='/')
     {
         this.userId=users[0].id;
         this.router.navigate(['home/users/',this.userId]);
     }
-    else if(users.length && this.router.url=='/add')
+    else if(this.contactLen && this.router.url=='/add')
     {
       this.userId=users[0].id;
       this.router.navigate(['home/users/',this.userId]);
     }
-    else if(users.length==0)
+    else if(this.contactLen==0)
     {
-      console.log(this.router.url)
       this.router.navigate(['home/nocontacts']);
     }
     else

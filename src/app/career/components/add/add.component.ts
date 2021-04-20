@@ -9,30 +9,34 @@ import { UserServiceService } from '../../service/user-service.service';
 })
 export class AddComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private router:Router,private us:UserServiceService) { }
+  constructor(private formBuild:FormBuilder,private router:Router,private userService:UserServiceService) { }
   registerForm:FormGroup;
-  static id:number=4;
+  static id:number=1;
+  headerBlock:boolean=true;
+  contactBlock:boolean=true;
   submitted:boolean=false;
   ngOnInit() {
-    this.registerForm=this.fb.group(
+    this.registerForm=this.formBuild.group(
       {
         name:new FormControl('',Validators.required),
         mail:new FormControl('',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-        number:new FormControl('',[Validators.required,Validators.minLength(10)]),
+        number:new FormControl('+91',[Validators.required,Validators.minLength(10)]),
         landline:new FormControl(),
         website:new FormControl(),
         address:new FormControl(),
       });
-        if(!this.us.userContacts.length)
+        if(this.contactLen==0)
         {
-          var header=document.querySelector(".header");
-          header.remove();
-          var cont=<HTMLElement>document.querySelector(".flexContent");
-          cont.style.marginLeft="250px";
+          this.headerBlock=false;
+        }
+        else
+        {
+          this.headerBlock=true;
         }
   }
-  get f() { return this.registerForm.controls; }
-  userContacts=this.us.userContacts;
+  get control() { return this.registerForm.controls; }
+  userContacts=this.userService.userContacts;
+  contactLen=this.userContacts.length;
   getData():void
   {
     this.submitted = true;
@@ -40,7 +44,7 @@ export class AddComponent implements OnInit {
       return;
   }
       this.registerForm.value.id=AddComponent.id;
-      this.us.getData(this.registerForm.value);
+      this.userService.getData(this.registerForm.value);
       this.registerForm.reset();
       this.submitted = true;
       this.router.navigate(['/home/users/',AddComponent.id]);

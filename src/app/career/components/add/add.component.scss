@@ -7,6 +7,7 @@
 .contactNames
 {
     margin-left:20px;
+    width:220px;
 }
 .contact
 {
@@ -24,11 +25,8 @@
     background-color: #CFE7F3;
     border:1px solid #E4E4E4;
 }
-.contactDetails
-{
-    display: flex;
-}
 .contactDetails {
+    display: flex;
     width: 520px;
     height: 450px;
     flex-grow: 10px;
@@ -46,11 +44,11 @@
 .subDetails
 {
     width:400px;
-}
-.subDetails label
-{
+    label
+    {   
     font-weight: bold;
     font-size: 11px;
+    }
 }
 .btn
 {
