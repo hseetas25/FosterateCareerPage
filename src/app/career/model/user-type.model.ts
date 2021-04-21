@@ -2,7 +2,7 @@ export class UserType {
     id:number;
     name:string;
     mail:string;
-    number:number;
+    number:string;
     landline:string;
     website:string;
     address:string;
