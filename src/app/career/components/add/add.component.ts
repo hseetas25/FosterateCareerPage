@@ -47,7 +47,7 @@ export class AddComponent implements OnInit {
       this.userService.getData(this.registerForm.value);
       this.registerForm.reset();
       this.submitted = true;
-      this.router.navigate(['/home/users/',AddComponent.id]);
+      this.router.navigate(['/contacts/contact/',AddComponent.id]);
       AddComponent.id+=1;
   }
 

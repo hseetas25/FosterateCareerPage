@@ -23,10 +23,10 @@ export class UserServiceService {
     if(users.length)
     {
       this.userId=this.userContacts[0].id;
-      this.router.navigate(['home/users/',this.userId]);
+      this.router.navigate(['contacts/contact/',this.userId]);
     }
     else{
-      this.router.navigate(['home/nocontacts']);
+      this.router.navigate(['contacts/nocontacts']);
     }
   }
   getData(data:UserType):void

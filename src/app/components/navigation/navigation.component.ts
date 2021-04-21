@@ -22,21 +22,21 @@ export class NavigationComponent implements OnInit {
     if(this.contactLen && this.router.url=='/')
     {
         this.userId=users[0].id;
-        this.router.navigate(['home/users/',this.userId]);
+        this.router.navigate(['contacts/contact/',this.userId]);
     }
     else if(this.contactLen && this.router.url=='/add')
     {
       this.userId=users[0].id;
-      this.router.navigate(['home/users/',this.userId]);
+      this.router.navigate(['contacts/contact/',this.userId]);
     }
     else if(this.contactLen==0)
     {
-      this.router.navigate(['home/nocontacts']);
+      this.router.navigate(['contacts/nocontacts']);
     }
     else
     {
       const userIdFromRoute = Number(this.router.url.charAt(this.router.url.length-1));
-      this.router.navigate(['home/users/',userIdFromRoute]);
+      this.router.navigate(['contacts/users/',userIdFromRoute]);
     }
   }
 

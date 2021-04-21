@@ -2,7 +2,7 @@
         <div class="contacts" id=""> 
             <div class="contactNames">
                 <div *ngFor="let userContact of userContacts">
-                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/home/users/',userContact.id]" routerLinkActive="active"  (dblclick)="presentData()">
+                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/contacts/contact/',userContact.id]" routerLinkActive="active"  (dblclick)="presentData()">
                         <li id="contactName1">{{userContact.name}}</li>
                         <li id="contactNumber1">{{userContact.number}}</li>
                         <li id="contactEmail1">{{userContact.mail}}</li>
@@ -46,12 +46,12 @@
                             <input type="text" id="contactMail"  formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && control.mail.errors}">
                             <div *ngIf="submitted && control.mail.errors">
                                 <small *ngIf="control.mail.errors.required" class="error">Email is required</small>
-                                <small *ngIf="control.mail.errors.email" class="error">Email should be valid</small>>
+                                <small *ngIf="control.mail.errors.email" class="error">Email should be valid</small>
                             </div>
                         </div>
                         <div class="block">
                             <div class="form-group">
-                                <label >Mobile<span class="mandatory"> *</span></label>
+                                <label style="margin-top:3px;padding-bottom: 4px;">Mobile<span class="mandatory"> *</span></label>
                                 <input type="text" id="contactNumber"  formControlName="number" class="form-control" minlength="10" [ngClass]="{ 'is-invalid': submitted && control.number.errors }">
                                 <div *ngIf="submitted && control.number.errors">
                                     <small *ngIf="control.number.errors.required" class="error">Number is required</small>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  style="margin-left: 5px;" >Landline</label>
+                                <label  style="margin-left: 5px;margin-top:3px;padding-bottom: 4px" >Landline</label>
                                 <input style="margin-left: 5px;" type="number" id="contactLandline" formControlName="landline" class="form-control" >
                             </div>
                         </div>

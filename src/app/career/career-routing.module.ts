@@ -5,10 +5,10 @@ import { HomeComponent } from './components/home/home.component';
 import { NocontactsComponent } from './components/nocontacts/nocontacts.component';
 
 const routes: Routes = [
-  {path:"",redirectTo:"home/users/1",pathMatch:"full"},
-  {path:"home", component:HomeComponent},
-  {path:'home/users/:userId',component:HomeComponent},
-  {path:'home/nocontacts',component:NocontactsComponent},
+  {path:"",redirectTo:"contacts/contact/1",pathMatch:"full"},
+  {path:"contacts", component:HomeComponent},
+  {path:'contacts/contact/:userId',component:HomeComponent},
+  {path:'contacts/nocontacts',component:NocontactsComponent},
   {path:'add',component:AddComponent},
 ];
 
