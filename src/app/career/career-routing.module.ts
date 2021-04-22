@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './components/add/add.component';
 import { HomeComponent } from './components/home/home.component';
-import { NocontactsComponent } from './components/nocontacts/nocontacts.component';
+import { NocontactsComponent } from './components/no-contacts/no-contacts.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"contacts/contact/1",pathMatch:"full"},

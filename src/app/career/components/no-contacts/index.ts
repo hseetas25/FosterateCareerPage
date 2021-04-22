@@ -1,0 +1,1 @@
+export * from './no-contacts.component';

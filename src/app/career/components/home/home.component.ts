@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { UserServiceService } from '../../service/user-service.service';
-import { UserType } from '../../model/user-type.model';
+import { UserType } from '../../model/user.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       {
         name:new FormControl('',Validators.required),
         mail:new FormControl('',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-        number:new FormControl('',[Validators.required,Validators.minLength(10)]),
+        number:new FormControl('',[Validators.required,Validators.pattern('[0-9]{10}$')]),
         landline:new FormControl(),
         website:new FormControl(),
         address:new FormControl(),

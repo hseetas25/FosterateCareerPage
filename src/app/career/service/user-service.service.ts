@@ -34,9 +34,6 @@ export class UserServiceService {
     if(data){
       users.push(data);
     }
-    else{
-      console.log("Empty data");
-    }
   }
   getUrlId():number
   {

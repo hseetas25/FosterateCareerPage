@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { users } from '../../career/service/users';
-import { UserServiceService } from '../../career/service/user-service.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -9,7 +8,7 @@ import { UserServiceService } from '../../career/service/user-service.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router:Router,private userService:UserServiceService) { }
+  constructor(private router:Router) { }
   userId:number;
   contactLen:number;
   ngOnInit(): void {
@@ -36,7 +35,7 @@ export class NavigationComponent implements OnInit {
     else
     {
       const userIdFromRoute = Number(this.router.url.charAt(this.router.url.length-1));
-      this.router.navigate(['contacts/users/',userIdFromRoute]);
+      this.router.navigate(['contacts/contact/',userIdFromRoute]);
     }
   }
 

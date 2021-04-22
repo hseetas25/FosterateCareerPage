@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nocontacts',
-  templateUrl: './nocontacts.component.html',
-  styleUrls: ['./nocontacts.component.scss']
+  templateUrl: './no-contacts.component.html',
+  styleUrls: ['./no-contacts.component.scss']
 })
 export class NocontactsComponent implements OnInit {
 
