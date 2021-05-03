@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'',loadChildren:()=>import('./career/career-routing.module').then(m=>m.CareerRoutingModule)},
+  {path: '', loadChildren: () => import('./career/career-routing.module').then(m => m.CareerRoutingModule)},
 ];
 
 @NgModule({

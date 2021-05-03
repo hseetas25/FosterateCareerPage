@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { users } from '../../career/service/users';
 @Component({
   selector: 'app-navigation',
@@ -8,34 +8,33 @@ import { users } from '../../career/service/users';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router:Router) { }
-  userId:number;
-  contactLen:number;
+  constructor(private router: Router) { }
+  userId: number;
+  contactLen: number;
   ngOnInit(): void {
-    this.gotoContact();
+    this.goToContact();
   }
 
-  gotoContact():void
-  {
-    this.contactLen=users.length;
-    if(this.contactLen && this.router.url=='/')
+  goToContact(){
+    this.contactLen = users.length;
+    if (this.contactLen && this.router.url === '/')
     {
-        this.userId=users[0].id;
-        this.router.navigate(['contacts/contact/',this.userId]);
+        this.userId = users[0].id;
+        this.router.navigate(['contacts/contact/', this.userId]);
     }
-    else if(this.contactLen && this.router.url=='/add')
+    else if (this.contactLen && this.router.url === '/add')
     {
-      this.userId=users[0].id;
-      this.router.navigate(['contacts/contact/',this.userId]);
+      this.userId = users[users.length - 1].id;
+      this.router.navigate(['contacts/contact/', this.userId]);
     }
-    else if(this.contactLen==0)
+    else if (this.contactLen === 0)
     {
       this.router.navigate(['contacts/nocontacts']);
     }
     else
     {
-      const userIdFromRoute = Number(this.router.url.charAt(this.router.url.length-1));
-      this.router.navigate(['contacts/contact/',userIdFromRoute]);
+      const userIdFromRoute = Number(this.router.url.charAt(this.router.url.length - 1));
+      this.router.navigate(['contacts/contact/', userIdFromRoute]);
     }
   }
 

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, NavigationComponent } from './components';
-import { CareerModule, CareerRoutingModule } from './career';
+import { CareerModule } from './career';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,6 @@ import { CareerModule, CareerRoutingModule } from './career';
     BrowserModule,
     AppRoutingModule,
     CareerModule,
-    CareerRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

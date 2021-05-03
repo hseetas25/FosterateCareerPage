@@ -2,7 +2,7 @@
         <div class="contacts" id=""> 
             <div class="contactNames">
                 <div *ngFor="let userContact of userContacts">
-                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/contacts/contact/',userContact.id]" routerLinkActive="active"  (dblclick)="presentData()">
+                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/contacts/contact/',userContact.id]" routerLinkActive="active"  (click)="activeData(userContact.id)">
                         <li id="contactName1">{{userContact.name}}</li>
                         <li id="contactNumber1">{{userContact.number}}</li>
                         <li id="contactEmail1">{{userContact.mail}}</li>
@@ -11,13 +11,13 @@
             </div>
             <div class="mainContact" style="width:280px" *ngIf="contactBlock">
                 <div *ngIf="userContactActive" >
-                    <div class="contactDetail" id="username">{{userContactActive.name}}<h6></h6></div>
+                    <div class="contactDetail" id="username">{{userContactActive.name}}</div>
                     <div class="memberDetails">
                         <li class="list" id="usermail">Email: {{userContactActive.mail}}</li>
                         <li class="list" id="usermobile">Mobile: {{userContactActive.number}}</li>
                         <li class="list" id="userlandline">Landline: {{userContactActive.landline}}</li>
                         <li class="list" id="userwebsite">Website: {{userContactActive.website}}</li>
-                        <li class="list0" id="useraddress">Address: {{userContactActive.address}}</li>
+                        <li class="list0" id="useraddress"><pre>Address: {{userContactActive.address}}</pre></li>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="submitButton" >
-                            <button class="btn btn-success" type="submit">Add</button>
+                            <button class="btn btn-success" type="submit">Edit</button>
                     </div>
                 </form>
             </div>
