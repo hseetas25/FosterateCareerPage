@@ -20,12 +20,12 @@ export class NavigationComponent implements OnInit {
     if (this.contactLen && this.router.url === '/')
     {
         this.userId = users[0].id;
-        this.router.navigate(['contacts/contact/', this.userId]);
+        this.router.navigate(['contacts/', this.userId]);
     }
     else if (this.contactLen && this.router.url === '/add')
     {
       this.userId = users[users.length - 1].id;
-      this.router.navigate(['contacts/contact/', this.userId]);
+      this.router.navigate(['contacts/', this.userId]);
     }
     else if (this.contactLen === 0)
     {
@@ -34,7 +34,7 @@ export class NavigationComponent implements OnInit {
     else
     {
       const userIdFromRoute = Number(this.router.url.charAt(this.router.url.length - 1));
-      this.router.navigate(['contacts/contact/', userIdFromRoute]);
+      this.router.navigate(['contacts/', userIdFromRoute]);
     }
   }
 

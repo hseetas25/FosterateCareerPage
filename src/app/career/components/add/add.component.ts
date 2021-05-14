@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UserServiceService } from '../../service/user-service.service';
-import { HomeComponent } from '../home';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -54,7 +54,7 @@ export class AddComponent implements OnInit {
     this.userService.addData(this.registerForm.value);
     this.registerForm.reset();
     this.submitted = true;
-    this.router.navigate(['/contacts/contact/', AddComponent.id]);
+    this.router.navigate(['/contacts/', AddComponent.id]);
     AddComponent.id += 1;
   }
 

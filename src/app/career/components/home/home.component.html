@@ -2,7 +2,7 @@
         <div class="contacts" id=""> 
             <div class="contactNames">
                 <div *ngFor="let userContact of userContacts">
-                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/contacts/contact/',userContact.id]" routerLinkActive="active"  (click)="activeData(userContact.id)">
+                    <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/contacts/',userContact.id]" routerLinkActive="active"  (click)="activeData(userContact.id)">
                         <li id="contactName1">{{userContact.name}}</li>
                         <li id="contactNumber1">{{userContact.number}}</li>
                         <li id="contactEmail1">{{userContact.mail}}</li>
@@ -22,11 +22,11 @@
                 </div>
             </div>
             <div class="imageIcon" *ngIf="imageBlock">
-                <div>
-                    <img src="../../../../assets/Pictures/Edit-icon.png" height="18px" alt="EDIT Image"class="icon" id="imagePlace" (click)="editDetails()"><span class="modify" (click)="editDetails()">EDIT</span>
+                <div >
+                    <img src="../../../../assets/Pictures/Edit-icon.png" height="18px" alt="EDIT Image"class="icon" id="imagePlace" (click)="editDetails()" ><span class="modify" id="editAlign" (click)="editDetails()" >EDIT</span>
                 </div>
                 <div>
-                    <img src="../../../../assets/Pictures/delete2.png" height="26px" alt="DELETE Image"class="icon" (click)="deleteDetails()"><span class="modify" (click)="deleteDetails()">DELETE</span>
+                    <img src="../../../../assets/Pictures/delete2.png" height="26px" alt="DELETE Image"class="icon" id="imagePlace1" (click)="deleteDetails()"><span class="modify" (click)="deleteDetails()" >DELETE</span>
                 </div>
             </div>
             <div class="contactDetails" *ngIf="formBlock">

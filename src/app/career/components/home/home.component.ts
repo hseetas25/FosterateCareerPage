@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     if (this.userContacts.length)
     {
       this.userId = this.userContacts[this.userContacts.length - 1].id;
-      this.router.navigate(['contacts/contact/', this.userId]);
+      this.router.navigate(['contacts/', this.userId]);
     }
     else{
       this.router.navigate(['contacts/nocontacts']);
