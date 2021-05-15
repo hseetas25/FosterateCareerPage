@@ -1,6 +1,14 @@
 <h6 class="header">CONTACTS</h6>
         <div class="contacts" id=""> 
             <div class="contactNames">
+                <ngx-skeleton-loader count="3"  *ngIf="loader" [theme]="{ 
+                    'width': '220px',
+                    'display': 'flex',
+                    'height': '75px',
+                    'margin': '2px',
+                    'background-color': '#e0e0e0',
+                    border: '1px solid #E4E4E4'
+                  }"></ngx-skeleton-loader>
                 <div *ngFor="let userContact of userContacts">
                     <ul class="contact active" [ngClass]="{'active':id==userContact.id}" [routerLink]="['/contacts/',userContact.id]" routerLinkActive="active"  (click)="activeData(userContact.id)">
                         <li id="contactName1">{{userContact.name}}</li>
@@ -10,6 +18,15 @@
                 </div>
             </div>
             <div class="mainContact" style="width:280px" *ngIf="contactBlock">
+                <ngx-skeleton-loader count="5"  *ngIf="loader" [theme]="{ 
+                    'width': '220px',
+                    'display': 'flex',
+                    'height': '25px',
+                    'margin': '2px',
+                    'margin-left' : '50px',
+                    'background-color': '#e0e0e0',
+                    border: '1px solid #E4E4E4'
+                  }"></ngx-skeleton-loader>
                 <div *ngIf="userContactActive" >
                     <div class="contactDetail" id="username">{{userContactActive.name}}</div>
                     <div class="memberDetails">

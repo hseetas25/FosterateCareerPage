@@ -1,8 +1,16 @@
 <h6 class="header" *ngIf="headerBlock">CONTACTS</h6>
 <div class="flexContent">
     <div class="contactNames" *ngIf="contactBlock">
+        <ngx-skeleton-loader count="3"  *ngIf="loader" [theme]="{ 
+            'width': '220px',
+            'display': 'flex',
+            'height': '75px',
+            'margin': '2px',
+            'background-color': '#e0e0e0',
+            border: '1px solid #E4E4E4'
+          }"></ngx-skeleton-loader>
         <div *ngFor="let userContact of userContacts">
-            <ul class="contact" >
+            <ul class="contact">
                 <li id="contactName1">{{userContact.name}}</li>
                 <li id="contactNumber1">{{userContact.number}}</li>
                 <li id="contactEmail1">{{userContact.mail}}</li>

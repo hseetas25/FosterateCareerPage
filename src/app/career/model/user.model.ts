@@ -6,7 +6,8 @@ export class UserContact {
     landline: string;
     website: string;
     address: string;
-
+    key:string;
+    
     constructor( user ){
         this.id = user.id;
         this.name = user.name;

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserServiceService } from '../../service/user-service.service';
 import { UserContact } from '../../model/user.model';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,13 +11,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private fb: FormBuilder, public userService: UserServiceService) {
+  constructor(private router: Router, private fb: FormBuilder, public userService: UserServiceService, private firestore:AngularFirestore) {
   }
 
   get control() { return this.editForm.controls; }
   static id = 0;
 
-  userContacts = this.userService.userContacts;
+  userContacts: UserContact[];
   userId: number;
   contactBlock = true;
   imageBlock = true;
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   contactLen: number;
+  loader:boolean = true;
 
   ngOnInit(): void {
     this.editForm = this.fb.group(
@@ -37,10 +39,15 @@ export class HomeComponent implements OnInit {
         landline: new FormControl(),
         website: new FormControl(),
         address: new FormControl(),
-        id: new FormControl()
+        id: new FormControl(),
+        key:new FormControl(),
       });
-      this.userId = this.userContacts.findIndex(userContact1 => userContact1.id === this.userContacts[this.userContacts.length-1].id);
-      this.userContactActive = this.userContacts[this.userId];
+      this.userService.getData().subscribe(array=>{
+        this.userContacts=array;
+        this.loader=false;
+        this.userContactActive = this.userContacts[this.userContacts.length-1];
+      })
+      this.userService.pushData();
   }
 
   activeData(requiredId: number)
@@ -51,10 +58,13 @@ export class HomeComponent implements OnInit {
 
   deleteDetails()
   {
-
+    console.log("Called");
     this.userId = this.getId();
-    this.userService.deleteDetails(this.userId);
-    if (this.userContacts.length)
+    this.userContacts.splice(this.userId, 1);
+    this.userService.deleteDetails(this.userId,this.userContactActive.key).subscribe((arr)=>{
+      this.userService.getData().subscribe(array=>{
+        this.userContacts=array;
+        if (this.userContacts.length)
     {
       this.userId = this.userContacts[this.userContacts.length - 1].id;
       this.router.navigate(['contacts/', this.userId]);
@@ -62,7 +72,10 @@ export class HomeComponent implements OnInit {
     else{
       this.router.navigate(['contacts/nocontacts']);
     }
-    this.userContactActive = this.userService.userContacts[this.userContacts.length - 1];
+    this.userContactActive = this.userContacts[this.userContacts.length - 1];
+      })
+    });
+    //this.firestore.doc('contacts/'+this.userContactActive.key).delete();
   }
 
   editDetails()
@@ -91,8 +104,17 @@ export class HomeComponent implements OnInit {
    length = Number(this.router.url.length - 1);
    const userIdFromRoute = Number(this.router.url.charAt(length));
    this.editForm.value.id = userIdFromRoute;
+   this.editForm.value.key = this.userContacts[this.userId].key;
    this.userContacts.splice(this.userId, 1, this.editForm.value);
-   this.userContactActive = this.userContacts[this.userId];
+   let data = Object.assign({}, this.editForm.value);
+   this.userService.updateData(data,this.userContactActive.key).subscribe(arr=>{
+    this.userService.getData().subscribe(array=>{
+      this.userContacts=array;
+      this.userContactActive = this.userContacts[this.userId];
+    })
+   });
+
+   //this.firestore.doc('/contacts/' + this.userContactActive.key).update(data);
    this.editForm.reset();
    this.contactBlock = true;
    this.imageBlock = true;

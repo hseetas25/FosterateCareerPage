@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UserServiceService } from '../../service/user-service.service';
+import { UserContact } from '../../model';
 
 @Component({
   selector: 'app-add',
@@ -15,14 +16,14 @@ export class AddComponent implements OnInit {
   get control() {
     return this.registerForm.controls;
   }
-  static id = 1;
+  id:number;
   registerForm: FormGroup;
   headerBlock = true;
   contactBlock = true;
   submitted = false;
-  userContacts = this.userService.userContacts;
-  contactLen = this.userContacts.length;
-
+  userContacts:UserContact[];
+  contactLen:number;
+  loader:boolean = true;
   ngOnInit() {
     this.registerForm = this.formBuild.group(
       {
@@ -33,8 +34,10 @@ export class AddComponent implements OnInit {
         website: new FormControl(),
         address: new FormControl(),
       });
-
-    if (this.contactLen === 0)
+      this.userService.getData().subscribe(array=>{
+        this.userContacts=array;
+        this.loader=false;
+        if (this.userContacts.length === 0)
         {
           this.headerBlock = false;
         }
@@ -42,6 +45,8 @@ export class AddComponent implements OnInit {
         {
           this.headerBlock = true;
         }
+      })
+      this.userService.pushData();
   }
 
   getData(): void
@@ -50,12 +55,12 @@ export class AddComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
   }
-    this.registerForm.value.id = AddComponent.id;
+    this.registerForm.value.id = this.userContacts.length+1;
+    this.id = this.userContacts.length+1;
     this.userService.addData(this.registerForm.value);
     this.registerForm.reset();
     this.submitted = true;
-    this.router.navigate(['/contacts/', AddComponent.id]);
-    AddComponent.id += 1;
+    this.router.navigate(['/contacts/', this.id]);
   }
 
 }
