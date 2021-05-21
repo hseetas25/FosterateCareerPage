@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { UserContact } from '../model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { NgxToastrService } from './ngx-toastr.service';
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
 
-  constructor(private firestore:AngularFirestore) { }
+  constructor(private firestore:AngularFirestore, private ngxService:NgxToastrService) { }
   userContacts: UserContact[];
   userId: number;
 
@@ -23,11 +24,13 @@ export class UserServiceService {
     return new Observable<any>((sub)=>{
       this.firestore.collection('contacts').doc(key).delete().then(()=>{
         sub.next({isSuccessful:true});
-        this.pushData();
+        this.ngxService.success("Successfully","Contact Deleted");
       },(reason)=>{
-        sub.next({isSuccessful:false,reason})
+        sub.next({isSuccessful:false,reason});
+        this.ngxService.error("Error","Contact didn't delete");
       }).catch((err)=>{
         sub.next({isSuccessful:false,err});
+        this.ngxService.error("Error","Contact didn't delete");
       })
     })
   }
@@ -37,14 +40,15 @@ export class UserServiceService {
     let newContact=new UserContact(data);
     if (newContact){
       this.firestore.collection('contacts').add(data);
-      this.pushData();
+      this.ngxService.success("Successfully","Contact added");
+      //this.pushData();
     }
   }
 
   getData(){
     const contactList=new Array<UserContact>();
     return new Observable<any>((sub)=>{
-      const contactDetailRef = this.firestore.collection('contacts').get().subscribe((contacts)=>{
+      this.firestore.collection('contacts').get().subscribe((contacts)=>{
         if(contacts){
           contacts.forEach((contact)=>{
             const currContact = contact.data() as UserContact;
@@ -52,9 +56,6 @@ export class UserServiceService {
             contactList.push(currContact);
           });
           sub.next(contactList);
-        }
-        if(contactDetailRef){
-          contactDetailRef.unsubscribe();
         }
       })
     })
@@ -73,10 +74,13 @@ export class UserServiceService {
       this.firestore.collection('contacts').doc(key).set(currContact).then(()=>{
         sub.next({isSuccessful:true});
         this.pushData();
+        this.ngxService.success("Successfully","Contact updated");
       },(reason)=>{
-        sub.next({isSuccessful:false,reason})
+        sub.next({isSuccessful:false,reason});
+        this.ngxService.error("Error","Contact didn't update");
       }).catch((err)=>{
         sub.next({isSuccessful:false,err});
+        this.ngxService.error("Error","Contact didn't update");
       })
     })
   }

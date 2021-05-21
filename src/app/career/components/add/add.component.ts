@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UserServiceService } from '../../service/user-service.service';
 import { UserContact } from '../../model';
-
+import { AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -11,7 +11,7 @@ import { UserContact } from '../../model';
 })
 export class AddComponent implements OnInit {
 
-  constructor(private formBuild: FormBuilder, private router: Router, private userService: UserServiceService) { }
+  constructor(private formBuild: FormBuilder, private router: Router, private userService: UserServiceService, private rBase: AngularFireDatabase) { }
 
   get control() {
     return this.registerForm.controls;
