@@ -4,15 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig :{
-    apiKey: "AIzaSyBRExYvgrXbF3P74adZj_0kImOjCNZzgyE",
-    authDomain: "fosterate-c3110.firebaseapp.com",
-    projectId: "fosterate-c3110",
-    storageBucket: "fosterate-c3110.appspot.com",
-    messagingSenderId: "44624039729",
-    appId: "1:44624039729:web:11aec3023bf48f70822a10",
-    measurementId: "G-ED79DT1SWC"
-  },
+  firebaseConfig :{ },
 };
 
 /*
